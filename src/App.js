@@ -1,6 +1,15 @@
+import { BrowserRouter, Routes } from "react-router-dom";
+import { renderRoutes } from "./routes";
+import { Suspense } from "react";
 function App() {
   return (
-    <div className="text-red-600">1</div>
+    <Suspense>
+      <BrowserRouter>
+        <Routes>
+          {renderRoutes()}
+        </Routes>
+      </BrowserRouter>
+    </Suspense>
   );
 }
 
