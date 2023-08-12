@@ -5,7 +5,9 @@ export default function HomeTemplate() {
     return (
         <Fragment>
             <Header />
-            <Outlet />
+            <div className='pt-24'>
+                <Outlet />
+            </div>
             <div>footer</div>
         </Fragment>
     )

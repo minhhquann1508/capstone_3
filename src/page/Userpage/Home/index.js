@@ -1,7 +1,10 @@
-import React from 'react'
-
+import React, { Fragment } from 'react'
+import Carousel from '../../../component/Carousel'
 export default function Home() {
     return (
-        <div>Home</div>
+        <Fragment>
+            <Carousel />
+            <div>Home</div>
+        </Fragment>
     )
 }
