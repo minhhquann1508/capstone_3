@@ -1,14 +1,18 @@
 import { useFormik } from 'formik';
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { actLogin } from './duck/action';
 export default function Login() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const formik = useFormik({
         initialValues: {
             taiKhoan: '',
             matKhau: ''
         },
         onSubmit: (values) => {
-            console.log(values);
+            dispatch(actLogin(values, navigate))
         }
     })
     return (

@@ -15,9 +15,6 @@ export default function Carousel() {
     useEffect(() => {
         dispatch(fetchData());
     }, [])
-    console.log('loading', loading);
-    console.log('data', data);
-    console.log('error', error);
     if (loading) {
         return (
             <section className='flex justify-center py-14'>

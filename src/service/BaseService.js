@@ -8,7 +8,7 @@ export default class BaseService {
             url: `${DOMAIN}/${url}`,
             headers: {
                 TokenCybersoft: TOKEN,
-                Authorization: `Bearer ${JSON.parse(localStorage.getItem(ACCESS_TOKEN))}`
+                Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
             }
         })
     }
@@ -19,7 +19,7 @@ export default class BaseService {
             data: model,
             headers: {
                 TokenCybersoft: TOKEN,
-                Authorization: `Bearer ${JSON.parse(localStorage.getItem(ACCESS_TOKEN))}`
+                Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
             }
         })
     }
@@ -30,7 +30,7 @@ export default class BaseService {
             data: model,
             headers: {
                 TokenCybersoft: TOKEN,
-                Authorization: `Bearer ${JSON.parse(localStorage.getItem(ACCESS_TOKEN))}`
+                Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
             }
         })
     }
@@ -40,7 +40,7 @@ export default class BaseService {
             url: `${DOMAIN}/${url}`,
             headers: {
                 TokenCybersoft: TOKEN,
-                Authorization: `Bearer ${JSON.parse(localStorage.getItem(ACCESS_TOKEN))}`
+                Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
             }
         })
     }

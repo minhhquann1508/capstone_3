@@ -1,5 +1,5 @@
 import { movieService } from "../../../service/MovieService"
-import { FETCH_REQUEST, FETCH_REQUEST_FAIL, FETCH_REQUEST_SUCCESS } from "./types"
+import { FETCH_REQUEST, FETCH_REQUEST_FAIL, FETCH_REQUEST_SUCCESS } from "./type"
 
 const actFetchRequest = () => {
     return {
@@ -25,7 +25,7 @@ export const fetchData = () => {
     return async (dispatch) => {
         dispatch(actFetchRequest())
         try {
-            let result = await movieService.getBanner();
+            let result = await movieService.getListMovie();
             if (result.status === 200) {
                 dispatch(actFetchSuccess(result.data.content))
             }

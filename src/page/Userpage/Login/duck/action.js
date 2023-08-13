@@ -1,7 +1,7 @@
 import { accountService } from "../../../../service/AccountService"
 import { LOGIN_USER } from "./type";
-
-export const actLogin = (data) => {
+import Swal from "sweetalert2";
+export const actLogin = (data, navigate) => {
     return async (dispatch) => {
         try {
             let result = await accountService.login(data);
@@ -10,10 +10,19 @@ export const actLogin = (data) => {
                     type: LOGIN_USER,
                     payload: result.data.content
                 })
+                await Swal.fire({
+                    icon: 'success',
+                    text: 'Đăng nhập thành công',
+                })
+                await navigate('/')
             }
         }
         catch (error) {
             console.log(error);
+            Swal.fire({
+                icon: 'error',
+                text: error.response.data.content,
+            })
         }
     }
 }
