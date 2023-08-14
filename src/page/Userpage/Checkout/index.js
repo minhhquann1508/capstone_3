@@ -2,15 +2,28 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
 import Swal from 'sweetalert2';
+import { Modal } from 'antd';
 import { fetchData, pickSeatAction } from './duck/action';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faUser } from '@fortawesome/free-regular-svg-icons';
 import { faCoins, faMobileScreen, faSwatchbook, faUtensils } from '@fortawesome/free-solid-svg-icons';
 import { comboFood } from '../../../util/constant';
 import { InputNumber } from 'antd';
+import PaypalComponents from '../../../component/Paypal';
 export default function Checkout() {
     const { userLogin } = useSelector(state => state.loginReducer);
     const { loading, data, error, lstSeat } = useSelector(state => state.checkoutReducer);
+    // Xử lý mở modal
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+    const handleOk = () => {
+        setIsModalOpen(false);
+    };
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
     const [totalFood, setTotalFood] = useState(0);
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -75,8 +88,24 @@ export default function Checkout() {
         }, 0)
         return totalFood + totalTicketPrice;
     }
+    //Hàm thực hiện thanh toán
+    const handlePaymentEvent = () => {
+        if (lstSeat.length <= 0) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Bạn chưa chọn ghế!',
+            })
+        }
+        else {
+            showModal();
+        }
+    }
     return (
         <section className='flex justify-center py-10 bg-blue-100'>
+            <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                <PaypalComponents />
+            </Modal>
             <div className='w-4/5 flex flex-col lg:flex-row'>
                 <div className='w-full lg:w-2/3'>
                     <div className='mb-5'>
@@ -200,7 +229,9 @@ export default function Checkout() {
                                 <h6 className='text-sm font-medium flex items-center gap-0.5'><FontAwesomeIcon icon={faCoins} /> <span>Tổng tiền:</span></h6>
                                 <span className='pl-2 text-sm'>{calcTotal().toLocaleString()} đ</span>
                             </div>
-                            <button className='font-medium bg-blue-600 p-2 rounded-md text-white hover:scale-105 hover:bg-blue-700 duration-300'>Thanh toán</button>
+                            <button className='font-medium bg-blue-600 p-2 rounded-md text-white hover:scale-105 hover:bg-blue-700 duration-300'
+                                onClick={handlePaymentEvent}
+                            >Thanh toán</button>
                         </div>
                     </div>
                 </div>
