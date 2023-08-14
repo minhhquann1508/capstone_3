@@ -8,3 +8,14 @@ export const GROUP_ID = 'GP01';
 export const USER_LOGIN = 'USER_LOGIN';
 //Access token
 export const ACCESS_TOKEN = 'ACCESS_TOKEN';
+
+export const starImg = 'https://www.cinestar.com.vn/catalog/view/theme/default/images/start-comment.png';
+
+export const comboFood = [
+    {
+        id: 1,
+        name: 'Combo 1 bắp 1 nước lớn',
+        price: 85000,
+        img: "https://img.giftpop.vn/brand/LOTTECINEMA/MP2010230001_BASIC_origin.jpg"
+    }
+]

@@ -8,7 +8,10 @@ class MovieService extends BaseService {
         return this.get('api/QuanLyPhim/LayDanhSachBanner');
     }
     getListMovie = () => {
-        return this.get(`api/QuanLyPhim/LayDanhSachPhim?maNhom=${GROUP_ID}`)
+        return this.get(`api/QuanLyPhim/LayDanhSachPhim?maNhom=${GROUP_ID}`);
+    }
+    getShowtimeByMovieId = (id) => {
+        return this.get(`api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${id}`);
     }
 }
 

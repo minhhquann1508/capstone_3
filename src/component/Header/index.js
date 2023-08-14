@@ -14,7 +14,7 @@ export default function Header() {
                         <img src="https://flowbite.com/docs/images/logo.svg" className="h-8 mr-3" alt="Flowbite Logo" />
                         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Movie</span>
                     </NavLink>
-                    <div className='flex items-center gap-3 md:hidden'>
+                    <div className={`${userLogin ? 'flex md:hidden' : 'hidden'} flex items-center gap-3`}>
                         <div className='flex items-center gap-3'>
                             <button className='w-6 h-6 rounded-full bg-black cursor-pointer'></button>
                             <button className='underline' onClick={() => {
@@ -60,7 +60,7 @@ export default function Header() {
                             {userLogin ?
                                 <div className='flex items-center gap-3'>
                                     <button className='hidden md:block w-6 h-6 rounded-full bg-black cursor-pointer'></button>
-                                    <button className='underline' onClick={() => {
+                                    <button className='hidden md:block underline' onClick={() => {
                                         localStorage.clear();
                                         navigate('/login');
                                         window.location.reload();
