@@ -11,6 +11,11 @@ export const ACCESS_TOKEN = 'ACCESS_TOKEN';
 
 export const starImg = 'https://www.cinestar.com.vn/catalog/view/theme/default/images/start-comment.png';
 
+export const PAYPAL_ID = 'AXfm7-g34qvhRsbXmXCQPUNoKByj_76o09Cla2imX88iDyKEYV1iBgRtcQ_ea0zaKJAjZvO9k1DBMfv_';
+
+export const USD = 23.300;
+
+
 export const comboFood = [
     {
         id: 1,

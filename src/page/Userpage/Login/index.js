@@ -3,6 +3,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { actLogin } from './duck/action';
+import { loginSchema } from '../../../util/schema';
 export default function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -11,29 +12,32 @@ export default function Login() {
             taiKhoan: '',
             matKhau: ''
         },
+        validationSchema: loginSchema,
         onSubmit: (values) => {
             dispatch(actLogin(values, navigate))
         }
     })
     return (
-        <section className='py-20 flex justify-center'>
-            <div className='w-4/5 md:w-2/6'>
-                <h1 className='text-center font-bold text-2xl text-blue-600'>Đăng nhập</h1>
-                <form onSubmit={formik.handleSubmit}>
-                    <div className="mb-6">
-                        <label className="block mb-2 font-medium text-gray-900 dark:text-white">Tài khoản</label>
-                        <input type="text" name='taiKhoan' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.taiKhoan} className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" />
+        <div className="bg-grey-lighter min-h-screen flex flex-col">
+            <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
+                <form onSubmit={formik.handleSubmit} className="bg-white px-6 py-8 rounded border shadow-md text-black w-full">
+                    <h1 className="mb-8 text-2xl font-medium text-blue-600 text-center">Đăng nhập</h1>
+                    <div className='mb-4'>
+                        <label className='font-medium'>Tài khoản</label>
+                        <input type="text" className="block border border-grey-light w-full p-2 rounded" onChange={formik.handleChange} onBlur={formik.handleBlur} name="taiKhoan" />
+                        {formik.touched.taiKhoan && formik.errors.taiKhoan ? <p className='text-red-600'>{formik.errors.taiKhoan}</p> : ''}
                     </div>
-                    <div className="mb-6">
-                        <label className="block mb-2 font-medium text-gray-900 dark:text-white">Mật khẩu</label>
-                        <input type="password" name='matKhau' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.matKhau} className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" />
+                    <div className='mb-4'>
+                        <label className='font-medium'>Mật khẩu</label>
+                        <input type="password" className="block border border-grey-light w-full p-2 rounded" onChange={formik.handleChange} onBlur={formik.handleBlur} name="matKhau" />
+                        {formik.touched.matKhau && formik.errors.matKhau ? <p className='text-red-600'>{formik.errors.matKhau}</p> : ''}
                     </div>
-                    <div className='mb-6'>
-                        <button type="submit" className="text-white w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Đăng nhập</button>
+                    <button type="submit" className="w-full text-center font-medium py-3 rounded bg-blue-600 text-white hover:bg-green-dark focus:outline-none my-1">Đăng nhập</button>
+                    <div className="text-center text-sm text-grey-dark mt-4">
+                        <p className='text-sm'>Bạn chưa có tài khoản ? <NavLink to='/register' className='font-medium text-blue-600 hover:underline duration-300'>Đăng ký ngay</NavLink></p>
                     </div>
-                    <p className='text-center text-sm font-medium'>Bạn chưa có tài khoản ? Đăng ký <NavLink className='text-blue-600 underline hover:text-blue-700' to="/register">tại đây</NavLink></p>
                 </form>
             </div>
-        </section>
+        </div>
     )
 }

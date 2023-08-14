@@ -103,8 +103,8 @@ export default function Checkout() {
     }
     return (
         <section className='flex justify-center py-10 bg-blue-100'>
-            <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-                <PaypalComponents />
+            <Modal title={<h1 className='font-medium text-lg text-center pb-3'>Thanh toán</h1>} footer="" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                <PaypalComponents lstSeat={{ maLichChieu: id, danhSachVe: lstSeat }} total={calcTotal} closeModal={handleCancel} />
             </Modal>
             <div className='w-4/5 flex flex-col lg:flex-row'>
                 <div className='w-full lg:w-2/3'>

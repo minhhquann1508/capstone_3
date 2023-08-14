@@ -1,0 +1,1 @@
+export const REGISTER_ACCOUNT = '@@registerReducer_REGISTER_ACCOUNT';

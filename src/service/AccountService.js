@@ -6,6 +6,9 @@ class AccountService extends BaseService {
     login = (data) => {
         return this.post('api/QuanLyNguoiDung/DangNhap', data)
     }
+    register = (data) => {
+        return this.post('api/QuanLyNguoiDung/DangKy', data)
+    }
 }
 
 export const accountService = new AccountService();
