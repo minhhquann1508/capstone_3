@@ -26,6 +26,6 @@ export default function BackToTopBtn() {
         });
     };
     return (
-        <button className={`${!isScoll ? 'hidden' : ''} hover:scale-110 duration-300 hover:bg-blue-700 fixed bottom-10 right-5 bg-blue-500 text-white w-10 h-10 rounded-full`}><FontAwesomeIcon icon={faArrowUp} onClick={scrollToTop} /></button>
+        <button className={`${!isScoll ? 'hidden' : ''} hover:scale-110 duration-300 hover:bg-blue-700 fixed z-50 bottom-10 right-5 bg-blue-500 text-white w-10 h-10 rounded-full`}><FontAwesomeIcon icon={faArrowUp} onClick={scrollToTop} /></button>
     )
 }
