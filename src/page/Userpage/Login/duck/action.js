@@ -14,7 +14,12 @@ export const actLogin = (data, navigate) => {
                     icon: 'success',
                     text: 'Đăng nhập thành công',
                 })
-                await navigate('/')
+                if (result.data.content.maLoaiNguoiDung === 'QuanTri') {
+                    await navigate('/admin/dashboard');
+                }
+                else {
+                    await navigate('/');
+                }
             }
         }
         catch (error) {

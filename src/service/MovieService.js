@@ -13,6 +13,9 @@ class MovieService extends BaseService {
     getShowtimeByMovieId = (id) => {
         return this.get(`api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${id}`);
     }
+    getShowtimeByMovie = (maPhim) => {
+        return this.get(`api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${maPhim}`);
+    }
 }
 
 export const movieService = new MovieService();

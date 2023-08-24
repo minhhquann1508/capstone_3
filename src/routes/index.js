@@ -34,15 +34,34 @@ const routes = [
                 path: '/register',
                 element: lazy(() => import('../page/Userpage/Register'))
             },
+            {
+                path: '/showtime/:type',
+                element: lazy(() => import('../page/Userpage/ListMovieShowtime'))
+            },
+            {
+                path: '/info/:type',
+                element: lazy(() => import('../page/Userpage/Info'))
+            },
         ]
     },
-    // {
-    //     path: '/admin',
-    //     element: lazy(() => import('../templates/AdminTemplate')),
-    //     nested: [
-    //         {}
-    //     ]
-    // }
+    {
+        path: '/admin',
+        element: lazy(() => import('../templates/AdminTemplate')),
+        nested: [
+            {
+                path: '/admin/dashboard',
+                element: lazy(() => import('../page/Adminpage/Dashboard'))
+            },
+            {
+                path: '/admin/manageUser',
+                element: lazy(() => import('../page/Adminpage/ManageUser'))
+            },
+            {
+                path: '/admin/manageMovie',
+                element: lazy(() => import('../page/Adminpage/ManageMovie'))
+            },
+        ]
+    }
 ]
 
 

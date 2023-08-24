@@ -15,3 +15,68 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.swiper-button-prev {
+  background-color: transparent; /* Màu nền */
+  color: blue; /* Màu chữ */
+  width: 35px !important;
+  height: 35px !important;
+  border-radius: 50%;
+  background-color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+.swiper-button-prev:after {
+  font-size: 18px !important;
+  color: #888888;
+  font-weight: 700;
+}
+
+/* Hover state cho nút "prev" */
+.swiper-button-prev:hover {
+  background-color: rgba(37 ,99 ,235, 0.7);
+  border-color: white;
+  transform: scale(1.05);
+}
+.swiper-button-prev:hover::after {
+  color: #fff;
+}
+.swiper-button-next {
+  background-color: transparent; /* Màu nền */
+  color: blue; /* Màu chữ */
+  width: 35px !important;
+  height: 35px !important;
+  border-radius: 50%;
+  background-color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+.swiper-button-next:after {
+  font-size: 18px !important;
+  color: #888888;
+  font-weight: 700;
+}
+.swiper-button-next:hover:after {
+  color: #fff;
+}
+
+/* Hover state cho nút "next" */
+.swiper-button-next:hover {
+  background-color: rgba(37 ,99 ,235, 0.7);
+  border-color: white;
+  transform: scale(1.05);
+}
+.ant-tabs-tab-btn {
+  font-size: 17px;
+  font-weight: 600;
+}
+.ant-picker-ok button {
+  background-color: #ccc !important;
+  color: rgba(0,0,0,0.7);
+}
+.ant-picker-ok button:hover {
+  background-color: rgb(37 99 235) !important;
+}
+@media screen and (max-width: 415px) {
+  .ant-tabs-tab-btn {
+    font-size: 14px;
+    font-weight: 600;
+  }
+}

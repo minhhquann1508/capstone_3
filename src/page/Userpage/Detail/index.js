@@ -1,20 +1,36 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
+import { Modal } from 'antd';
 import { useNavigate, useParams } from 'react-router'
 import { starImg } from '../../../util/constant';
 import MovieList from '../../../component/MovieList'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchData } from './duck/action';
 import moment from 'moment/moment';
+import Trailer from '../../../component/Trailer';
+import { Link } from 'react-scroll';
 export default function Detail() {
     const { id } = useParams();
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+    const handleOk = () => {
+        setIsModalOpen(false);
+    };
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
     const { loading, data, error } = useSelector(state => state.detailReducer);
     useEffect(() => {
         dispatch(fetchData(id))
     }, [id]);
     return (
         <Fragment>
+            <Modal footer='' destroyOnClose={true} width={1000} title={data?.tenPhim} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                <Trailer trailer={data?.trailer} />
+            </Modal>
             {/* Phần chi tiết */}
             <section className='flex justify-center bg-yellow-50 py-10'>
                 <div className='w-4/5 flex flex-col lg:flex-row'>
@@ -47,15 +63,17 @@ export default function Detail() {
                                 </div>
                             </div>
                             <div className='flex gap-5 justify-center'>
-                                <button className='p-2 text-xs md:p-3 text-white font-bold md:text-lg rounded-full flex items-center gap-1 md:gap-2 uppercase hover:scale-105 duration-300' style={{ background: 'rgba(0,0,0,0.5)' }}><img className='w-6 h-6 md:w-10 md:h-10' src="https://www.cinestar.com.vn/catalog/view/theme/default/images/scl_youtube.png" alt="ytb" /> <span>Trailer</span> </button>
-                                <button className='p-2 text-xs md:p-3 bg-white uppercase font-bold md:text-lg rounded-tl-3xl rounded-bl-3xl rounded-br-3xl shadow-2xl hover:scale-105 duration-300'>Xem suất chiếu</button>
+                                <button className='p-2 text-xs md:p-3 text-white font-bold md:text-lg rounded-full flex items-center gap-1 md:gap-2 uppercase hover:scale-105 duration-300' style={{ background: 'rgba(0,0,0,0.5)' }}
+                                    onClick={showModal}
+                                ><img className='w-6 h-6 md:w-10 md:h-10' src="https://www.cinestar.com.vn/catalog/view/theme/default/images/scl_youtube.png" alt="ytb" /> <span>Trailer</span> </button>
+                                <Link to='lstShowtime' spy={true} smooth={true} duration={500} offset={-70} className='p-2 text-xs md:p-3 bg-white uppercase font-bold md:text-lg rounded-tl-3xl rounded-bl-3xl rounded-br-3xl shadow-2xl hover:scale-105 duration-300 flex items-center cursor-pointer'><span>Xem suất chiếu</span></Link>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
             {/* Phần các suất chiếu đang có */}
-            <section className='flex justify-center py-12 bg-blue-50'>
+            <section className='flex justify-center py-12 bg-blue-50' id='lstShowtime'>
                 <div className='w-4/5'>
                     <h1 className='text-blue-600 font-bold text-3xl text-center mb-8'>Suất chiếu</h1>
                     {data?.heThongRapChieu.length <= 0 ?

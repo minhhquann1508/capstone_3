@@ -20,7 +20,7 @@ export default function Login() {
     return (
         <div className="bg-grey-lighter min-h-screen flex flex-col">
             <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-                <form onSubmit={formik.handleSubmit} className="bg-white px-6 py-8 rounded border shadow-md text-black w-full">
+                <form onSubmit={formik.handleSubmit} className="bg-white px-6 py-8 rounded border border-gray-300 shadow-md text-black w-full">
                     <h1 className="mb-8 text-2xl font-medium text-blue-600 text-center">Đăng nhập</h1>
                     <div className='mb-4'>
                         <label className='font-medium'>Tài khoản</label>

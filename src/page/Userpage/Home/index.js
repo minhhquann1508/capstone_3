@@ -2,10 +2,8 @@ import React, { Fragment } from 'react'
 import Carousel from '../../../component/Carousel'
 import MovieList from '../../../component/MovieList';
 import { Tabs } from 'antd';
-import ShowTimeList from '../../../component/ShowTimeList';
-const onChange = (key) => {
-    console.log(key);
-};
+import CinemaList from '../../../component/CinemaList';
+import DetailListCinema from '../../../component/DetailListCinema';
 const items = [
     {
         key: 'dangChieu',
@@ -24,10 +22,11 @@ export default function Home() {
             <Carousel />
             <section className='flex justify-center py-20 shadow'>
                 <div className='w-4/5'>
-                    <Tabs defaultActiveKey="dangChieu" centered={true} size='large' items={items} onChange={onChange} />
+                    <Tabs defaultActiveKey="dangChieu" centered={true} size='large' items={items} />
                 </div>
             </section>
-            <ShowTimeList />
+            <CinemaList />
+            <DetailListCinema />
         </Fragment>
     )
 }
