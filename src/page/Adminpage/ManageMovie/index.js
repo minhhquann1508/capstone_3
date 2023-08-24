@@ -100,7 +100,7 @@ export default function ManageMovie() {
         else {
             return data?.items.map((movie, index) => {
                 return (
-                    <tr key={index} className="border-b border-opacity-20 dark:border-gray-700 dark:bg-gray-900">
+                    <tr key={index} className="border-b border-opacity-20 text-black">
                         <td className="p-3">
                             {movie.maPhim}
                         </td>
@@ -157,12 +157,12 @@ export default function ManageMovie() {
             <Modal footer='' title="Tạo lịch chiếu" open={isCreateShowtime} onOk={handleOkCreateShowtimeModal} onCancel={handleCancelCreateShowtimeModal}>
                 <CreateShowtimeForm closeModal={handleCancelCreateShowtimeModal} setPage={setActivePage} />
             </Modal>
-            <h2 className="mb-4 text-2xl font-semibold leadi">Quản lý phim</h2>
-            <div className='flex justify-end mb-5'>
-                <div className='flex gap-3'>
-                    <form onSubmit={formik.handleSubmit}>
-                        <input name='keyword' onChange={formik.handleChange} placeholder='Tìm kiếm theo tên...' type="text" className='border p-2 rounded-l-md' />
-                        <button type='submit' className='p-2 bg-blue-600 font-medium text-white hover:bg-blue-700 duration-300 rounded-r-md'>Tìm kiếm</button>
+            <h2 className="mb-4 text-2xl font-semibold text-black">Quản lý phim</h2>
+            <div className='flex justify-start md:justify-end mb-5'>
+                <div className='flex gap-3 flex-col md:flex-row'>
+                    <form className='flex' onSubmit={formik.handleSubmit}>
+                        <input name='keyword' onChange={formik.handleChange} placeholder='Tìm kiếm theo tên...' type="text" className='border p-2 rounded-l-md w-2/3' />
+                        <button type='submit' className='w-1/3 p-2 bg-blue-600 font-medium text-xs md:text-base text-white hover:bg-blue-700 duration-300 rounded-r-md'>Tìm kiếm</button>
                     </form>
                     <button className='p-2 rounded-md bg-blue-600 font-medium text-white hover:bg-blue-700 duration-300'
                         onClick={showAddModal}
@@ -171,8 +171,8 @@ export default function ManageMovie() {
             </div>
             <div className="overflow-x-auto">
                 <table className="min-w-full text-xs">
-                    <thead className="dark:bg-gray-700">
-                        <tr className="text-left">
+                    <thead>
+                        <tr className="text-left text-black">
                             <th className="p-3">Mã phim</th>
                             <th className="p-3">Tên phim</th>
                             <th className="p-3">Mô tả</th>
@@ -190,11 +190,11 @@ export default function ManageMovie() {
                 </table>
             </div>
             {/* Phần pagination */}
-            <div className="flex justify-center space-x-1 dark:text-gray-100 mt-8">
+            <div className="flex justify-center space-x-1 mt-8">
                 {new Array(data?.totalPages).fill(null).map((_, index) => {
                     if (activePage === index + 1) {
                         return (
-                            <button type="button" key={index} title="Page 1" className="inline-flex border-blue-600 items-center text-blue-600 justify-center w-8 h-8 text-sm font-semibold border-2 rounded shadow-md dark:bg-gray-900 dark:text-red-400 dark:border-red-400"
+                            <button type="button" key={index} title="Page 1" className="inline-flex border-blue-600 items-center text-blue-600 justify-center w-8 h-8 text-sm font-semibold border-2 rounded shadow-md"
                                 onClick={() => {
                                     dispatch(fetchLstMovieData(index + 1, setActivePage))
                                 }}
@@ -203,7 +203,7 @@ export default function ManageMovie() {
                     }
                     else {
                         return (
-                            <button type="button" key={index} className="inline-flex items-center justify-center w-8 h-8 text-sm font-semibold border rounded shadow-md dark:bg-gray-900 dark:text-red-400 dark:border-red-400"
+                            <button type="button" key={index} className="inline-flex items-center justify-center w-8 h-8 text-sm font-semibold border rounded shadow-md"
                                 onClick={() => {
                                     dispatch(fetchLstMovieData(index + 1, setActivePage))
                                     setActivePage(index + 1);

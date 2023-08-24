@@ -43,11 +43,11 @@ export default function Dashboard() {
     }
     else {
         return (
-            <section className="p-6 dark:bg-gray-800 dark:text-gray-50">
+            <section className="p-6">
                 <form onSubmit={formik.handleSubmit} className="container flex flex-col mx-auto space-y-12">
-                    <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md dark:bg-gray-900">
+                    <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md ">
                         <div className="space-y-2 col-span-full lg:col-span-1">
-                            <p className="font-medium text-lg">Thông tin tài khoản</p>
+                            <p className="font-medium md:text-lg">Thông tin tài khoản</p>
                         </div>
                         <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
                             <div className="col-span-full sm:col-span-3">
@@ -78,10 +78,10 @@ export default function Dashboard() {
                                 <input type="text" disabled={true} name='maLoaiNguoiDung' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.maLoaiNguoiDung} className="p-2 border w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900" />
                             </div>
                             <div className='col-span-full text-right'>
-                                <button type='button' className='bg-white border border-gray-400 p-2 text-black duration-300 font-medium rounded-md hover:scale-105 mr-2'
+                                <button type='button' className='w-full mb-2 md:mb-0 md:w-auto bg-white border border-gray-400 p-2 text-black duration-300 font-medium rounded-md hover:scale-105 mr-2'
                                     onClick={() => setIsUpdate(!isUpdate)}
                                 >{!isUpdate ? 'Chỉnh sửa' : 'Hủy'}</button>
-                                <button type='submit' disabled={!isUpdate} className={`${!isUpdate ? 'cursor-not-allowed bg-gray-600' : 'hover:scale-105 hover:bg-blue-700'} bg-blue-600 p-2 text-white font-medium rounded-md duration-300`}>Cập nhật</button>
+                                <button type='submit' disabled={!isUpdate} className={`${!isUpdate ? 'cursor-not-allowed bg-gray-600' : 'hover:scale-105 hover:bg-blue-700'} w-full md:w-auto bg-blue-600 p-2 text-white font-medium rounded-md duration-300`}>Cập nhật</button>
                             </div>
                         </div>
                     </fieldset>
