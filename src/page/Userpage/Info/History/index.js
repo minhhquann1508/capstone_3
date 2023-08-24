@@ -13,8 +13,8 @@ export default function History() {
         return data?.thongTinDatVe.map((item) => {
             return (
                 <li key={item.maVe} className="flex flex-col py-6 sm:flex-row sm:justify-between">
-                    <div className="flex w-full space-x-2 sm:space-x-4">
-                        <img className="flex-shrink-0 object-cover w-20 h-20 dark:border-transparent rounded outline-none sm:w-32 sm:h-32 dark:bg-gray-500" src={item.hinhAnh} alt="Polaroid camera" />
+                    <div className="flex w-full flex-col md:flex-row sm:space-x-4">
+                        <img className="flex-shrink-0 object-cover w-20 h-20 rounded outline-none sm:w-32 sm:h-32" src={item.hinhAnh} alt="Polaroid camera" />
                         <div className="flex flex-col justify-between w-full pb-4">
                             <div className="flex justify-between w-full pb-2 space-x-2">
                                 <div className="space-y-1">
@@ -40,7 +40,7 @@ export default function History() {
         })
     }
     return (
-        <div className="flex flex-col max-w-3xl space-y-4 p-5 dark:bg-gray-900 dark:text-gray-100">
+        <div className="flex flex-col max-w-3xl space-y-4 p-5">
             <h2 className="text-xl font-semibold">Danh sách vé bạn đã đặt</h2>
             <ul className="flex flex-col divide-y divide-gray-700">
                 {renderContent()}

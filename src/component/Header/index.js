@@ -68,7 +68,7 @@ export default function Header() {
                             </li>
                             {userLogin ?
                                 <div className='flex items-center gap-3'>
-                                    <button className='hidden hover:scale-105 duration-300' onClick={() => {
+                                    <button className='hidden md:block hover:scale-105 duration-300' onClick={() => {
                                         navigate('/info/dashboard')
                                     }}
                                     ><FontAwesomeIcon icon={faUser} /></button>
