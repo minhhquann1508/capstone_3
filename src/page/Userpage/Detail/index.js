@@ -49,7 +49,7 @@ export default function Detail() {
                                 <p className='bg-white py-2 px-5 rounded-tl-3xl rounded-br-3xl font-semibold md:text-lg w-44 text-center'>{data?.hot > 7 ? 'Phim hot' : 'Đang chiếu'}</p>
                             </div>
                             <img className='mt-3' src="https://www.cinestar.com.vn/catalog/view/theme/default/images/nav-icon-2d.png" width={50} height={50} alt="2dlogo" />
-                            <p className='text-white mb-3 text-sm md:text-base'>
+                            <p className='text-white mb-3 md:text-lg'>
                                 {data?.moTa}
                             </p>
                             <div className='flex gap-3 items-center mb-5'>

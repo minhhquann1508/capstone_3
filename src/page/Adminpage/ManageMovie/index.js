@@ -105,7 +105,7 @@ export default function ManageMovie() {
                             {movie.maPhim}
                         </td>
                         <td className="p-3">
-                            {movie.tenPhim}
+                            <p title={movie.tenPhim}>{movie.tenPhim.slice(0, 50)}</p>
                         </td>
                         <td className="p-3">
                             <p title={movie.moTa}>{movie.moTa.slice(0, 30)}</p>

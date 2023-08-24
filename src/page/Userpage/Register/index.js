@@ -5,9 +5,15 @@ import { GROUP_ID } from '../../../util/constant';
 import { useDispatch } from 'react-redux';
 import { registerAction } from './duck/action';
 import { registerSchema } from '../../../util/schema';
+import { useSpring, animated } from '@react-spring/web';
 export default function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const props = useSpring({
+    from: { opacity: 0, y: -200 },
+    to: { opacity: 1, y: 0 },
+    config: { duration: 500 }
+  })
   const formik = useFormik({
     initialValues: {
       taiKhoan: '',
@@ -25,7 +31,7 @@ export default function Register() {
   return (
     <div className="bg-grey-lighter min-h-screen flex flex-col">
       <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-        <form onSubmit={formik.handleSubmit} className="bg-white px-6 py-8 rounded border border-gray-300 shadow-lg text-black w-full">
+        <animated.form style={{ ...props }} onSubmit={formik.handleSubmit} className="bg-white px-6 py-8 rounded border border-gray-300 shadow-lg text-black w-full">
           <h1 className="mb-5 text-2xl text-blue-600 font-medium text-center">Đăng ký</h1>
           <div className='mb-4'>
             <label className='mb-2 font-medium'>Tài khoản</label>
@@ -56,7 +62,7 @@ export default function Register() {
           <div className="text-center text-sm text-grey-dark mt-4">
             <p className='text-sm'>Bạn đã có tài khoản ? <NavLink to='/login' className='text-blue-600 hover:underline duration-300 font-medium'>Đăng nhập ngay</NavLink></p>
           </div>
-        </form>
+        </animated.form>
       </div>
     </div>
   )

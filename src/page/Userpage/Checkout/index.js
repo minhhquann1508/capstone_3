@@ -5,8 +5,8 @@ import Swal from 'sweetalert2';
 import { Modal } from 'antd';
 import { fetchData, pickSeatAction } from './duck/action';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faUser } from '@fortawesome/free-regular-svg-icons';
-import { faCoins, faMobileScreen, faSwatchbook, faUtensils } from '@fortawesome/free-solid-svg-icons';
+import { faCalendar, faEnvelope, faUser } from '@fortawesome/free-regular-svg-icons';
+import { faCoins, faFilm, faLocationDot, faMobileScreen, faSwatchbook, faUtensils } from '@fortawesome/free-solid-svg-icons';
 import { comboFood } from '../../../util/constant';
 import { InputNumber } from 'antd';
 import PaypalComponents from '../../../component/Paypal';
@@ -34,6 +34,18 @@ export default function Checkout() {
     const onChange = (value, price) => {
         setTotalFood(value * price);
     };
+    const pickSeat = (seat) => {
+        if (userLogin) {
+            dispatch(pickSeatAction(seat))
+        }
+        else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Bạn cần đăng nhập để chọn ghế',
+            })
+        }
+    }
     // Hàm render danh sách ghế
     const renderLstSeat = () => {
         return data?.danhSachGhe.map((seat) => {
@@ -53,24 +65,18 @@ export default function Checkout() {
                 let index = lstSeat?.findIndex((item) => item.maGhe === seat.maGhe);
                 if (index !== -1) {
                     return (
-                        <button key={seat.stt} onClick={() => {
-                            dispatch(pickSeatAction(seat))
-                        }} className='w-10 h-10 bg-green-600 text-white font-medium rounded-lg hover:scale-105 duration-300 border border-gray-300'>{seat.tenGhe}</button>
+                        <button key={seat.stt} onClick={() => pickSeat(seat)} className='w-10 h-10 bg-green-600 text-white font-medium rounded-lg hover:scale-105 duration-300 border border-gray-300'>{seat.tenGhe}</button>
                     )
                 }
                 else {
                     if (seat.loaiGhe === 'Thuong') {
                         return (
-                            <button key={seat.stt} onClick={() => {
-                                dispatch(pickSeatAction(seat))
-                            }} className='w-10 h-10 bg-gray-600 text-white font-medium rounded-lg hover:scale-105 duration-300 border border-gray-300'>{seat.tenGhe}</button>
+                            <button key={seat.stt} onClick={() => pickSeat(seat)} className='w-10 h-10 bg-gray-600 text-white font-medium rounded-lg hover:scale-105 duration-300 border border-gray-300'>{seat.tenGhe}</button>
                         )
                     }
                     else {
                         return (
-                            <button key={seat.stt} onClick={() => {
-                                dispatch(pickSeatAction(seat))
-                            }} className='w-10 h-10 bg-pink-600 text-white font-medium rounded-lg hover:scale-105 duration-300 border border-gray-300'>{seat.tenGhe}</button>
+                            <button key={seat.stt} onClick={() => pickSeat(seat)} className='w-10 h-10 bg-pink-600 text-white font-medium rounded-lg hover:scale-105 duration-300 border border-gray-300'>{seat.tenGhe}</button>
                         )
                     }
                 }
@@ -84,6 +90,11 @@ export default function Checkout() {
         }, 0)
         return totalFood + totalTicketPrice;
     }
+    //Hàm xử lý khi click vào mở map
+    const handleAddressClick = (address) => {
+        const googleMapsURL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+        window.open(googleMapsURL, '_blank');
+    };
     //Hàm thực hiện thanh toán
     const handlePaymentEvent = () => {
         if (!userLogin) {
@@ -123,7 +134,7 @@ export default function Checkout() {
             <div className='w-4/5 flex flex-col lg:flex-row'>
                 <div className='w-full lg:w-2/3'>
                     <div className='mb-5'>
-                        <h1 className='font-medium text-lg mb-3'>Thông tin hàng ghế</h1>
+                        <h1 className='font-bold text-lg mb-3'>Thông tin hàng ghế</h1>
                         <div className='bg-white rounded-md flex flex-wrap gap-3 p-5 border border-gray-500'>
                             <div className='flex gap-1 items-center'>
                                 <button className='w-6 h-6 rounded-md border-2 border-white bg-gray-600'></button>
@@ -167,7 +178,7 @@ export default function Checkout() {
                     </div>
                 </div>
                 <div className='w-full lg:w-1/3 mt-5 lg:mt-0 lg:ml-5'>
-                    <h1 className='font-medium text-lg mb-3 text-center'>Thông tin phim</h1>
+                    <h1 className='font-bold text-lg mb-3 text-center'>Thông tin phim</h1>
                     {/* Thông tin của phim */}
                     {loading ?
                         <div className='rounded-md border border-gray-500 bg-white px-3 py-5 flex justify-center gap-3 mb-5'>
@@ -181,24 +192,28 @@ export default function Checkout() {
                                 <img src={data?.thongTinPhim.hinhAnh} alt="anh" />
                             </div>
                             <div>
-                                <h1 className='font-medium uppercase'>{data?.thongTinPhim.tenPhim}</h1>
+                                <h1 className='font-bold uppercase text-blue-700'>{data?.thongTinPhim.tenPhim}</h1>
                                 <div>
-                                    <label className='text-sm font-medium'>Ngày chiếu:</label>
-                                    <p className='text-sm'>{data?.thongTinPhim.gioChieu},{data?.thongTinPhim.ngayChieu}</p>
+                                    <label className='text-sm md:text-base font-bold'><FontAwesomeIcon icon={faCalendar} /> Ngày chiếu:</label>
+                                    <p className='text-sm text-gray-700 md:text-base'>{data?.thongTinPhim.gioChieu},{data?.thongTinPhim.ngayChieu}</p>
                                 </div>
                                 <div>
-                                    <label className='text-sm font-medium'>Cụm rạp:</label>
-                                    <p className='text-sm'>{data?.thongTinPhim.tenRap}, {data?.thongTinPhim.tenCumRap}</p>
+                                    <label className='text-sm md:text-base font-bold'><FontAwesomeIcon icon={faFilm} /> Cụm rạp:</label>
+                                    <p className='text-sm text-gray-700 md:text-base'>{data?.thongTinPhim.tenRap}, {data?.thongTinPhim.tenCumRap}</p>
                                 </div>
                                 <div>
-                                    <label className='text-sm font-medium'>Địa chỉ:</label>
-                                    <p className='text-sm hover:underline hover:text-blue-600 duration-300 cursor-pointer'>{data?.thongTinPhim.diaChi}</p>
+                                    <label className='text-sm md:text-base font-bold'><FontAwesomeIcon icon={faLocationDot} /> Địa chỉ:</label>
+                                    <p className='text-sm text-gray-700 md:text-base hover:underline hover:text-blue-600 duration-300 cursor-pointer'
+                                        onClick={() => {
+                                            handleAddressClick(data?.thongTinPhim.diaChi)
+                                        }}
+                                    >{data?.thongTinPhim.diaChi}</p>
                                 </div>
                             </div>
                         </div>
                     }
                     {/* Thông tin người dùng */}
-                    <h1 className='font-medium text-lg mb-3 text-center'>Thông tin đặt vé</h1>
+                    <h1 className='font-bold text-lg mb-3 text-center'>Thông tin đặt vé</h1>
                     <div className='rounded-md border bg-white border-gray-500 p-3 mb-5'>
                         {loading ?
                             <div className='flex justify-center'>
@@ -208,21 +223,21 @@ export default function Checkout() {
                             </div> :
                             <>
                                 <div className='flex mb-2'>
-                                    <h6 className='text-sm font-medium flex items-center gap-0.5'><FontAwesomeIcon icon={faUser} /> <span>Họ tên:</span></h6>
-                                    <span className='pl-2 text-sm'>{userLogin?.hoTen}</span>
+                                    <h6 className='text-sm md:text-base font-medium flex items-center gap-0.5'><FontAwesomeIcon icon={faUser} /> <span className='font-bold'>Họ tên:</span></h6>
+                                    <span className='pl-2 text-sm md:text-base'>{userLogin?.hoTen}</span>
                                 </div>
                                 <div className='flex mb-2'>
-                                    <h6 className='text-sm font-medium flex items-center gap-0.5'><FontAwesomeIcon icon={faEnvelope} /> <span>Email:</span></h6>
-                                    <span className='pl-2 text-sm'>{userLogin?.email}</span>
+                                    <h6 className='text-sm md:text-base font-medium flex items-center gap-0.5'><FontAwesomeIcon icon={faEnvelope} /> <span className='font-bold'>Email:</span></h6>
+                                    <span className='pl-2 text-sm md:text-base'>{userLogin?.email}</span>
                                 </div>
                                 <div className='flex mb-2'>
-                                    <h6 className='text-sm font-medium flex items-center gap-0.5'><FontAwesomeIcon icon={faMobileScreen} /> <span>SĐT:</span></h6>
-                                    <span className='pl-2 text-sm'>{userLogin?.soDT}</span>
+                                    <h6 className='text-sm md:text-base font-medium flex items-center gap-0.5'><FontAwesomeIcon icon={faMobileScreen} /> <span className='font-bold'>SĐT:</span></h6>
+                                    <span className='pl-2 text-sm md:text-base'>{userLogin?.soDT}</span>
                                 </div>
                                 <div className='mb-2'>
-                                    <h6 className='text-sm font-medium flex items-center gap-0.5 mb-1'><FontAwesomeIcon icon={faSwatchbook} /> <span>Hàng ghế</span></h6>
+                                    <h6 className='text-sm md:text-base font-medium flex items-center gap-0.5 mb-1'><FontAwesomeIcon icon={faSwatchbook} /> <span className='font-bold'>Hàng ghế</span></h6>
                                     <div className='flex flex-wrap gap-2'>
-                                        {lstSeat.length <= 0 ? <span className='text-sm'>Chưa có ghế được chọn</span> :
+                                        {lstSeat.length <= 0 ? <span className='text-sm md:text-base'>Chưa có ghế được chọn</span> :
                                             lstSeat?.sort((a, b) => a.tenGhe - b.tenGhe).map((seat, index) => {
                                                 return (
                                                     <button key={index} className='border-2 border-black text-xs font-medium py-1 px-1.5 rounded-lg'>{seat.tenGhe}</button>
@@ -232,7 +247,7 @@ export default function Checkout() {
                                     </div>
                                 </div>
                                 <div className='mb-2'>
-                                    <h6 className='text-sm font-medium flex items-center gap-0.5 mb-1'><FontAwesomeIcon icon={faUtensils} /> <span>Sản phẩm đi kèm</span></h6>
+                                    <h6 className='text-sm md:text-base font-medium flex items-center gap-0.5 mb-1'><FontAwesomeIcon icon={faUtensils} /> <span className='font-bold'>Sản phẩm đi kèm</span></h6>
                                     <div>
                                         {comboFood.map((item) => {
                                             return (
@@ -241,8 +256,10 @@ export default function Checkout() {
                                                         <img src={item.img} alt={item.id} />
                                                     </div>
                                                     <div className='pl-3'>
-                                                        <h1 className='font-medium text-sm mb-2'>{item.name}</h1>
-                                                        <InputNumber min={0} className='border-2 w-16 border-black focus:border-blue-600' onChange={(value) => onChange(value, item.price)} />
+                                                        <h1 className='font-medium text-sm md:text-base mb-2'>{item.name}</h1>
+                                                        <InputNumber min={0} className='border-2 w-16 border-black focus:border-blue-600' onChange={(value) => {
+                                                            onChange(value, item.price)
+                                                        }} />
                                                     </div>
                                                 </div>
                                             )
@@ -251,8 +268,8 @@ export default function Checkout() {
                                 </div>
                                 <div className='flex items-center justify-between'>
                                     <div className='flex mb-2'>
-                                        <h6 className='text-sm font-medium flex items-center gap-0.5'><FontAwesomeIcon icon={faCoins} /> <span>Tổng tiền:</span></h6>
-                                        <span className='pl-2 text-sm'>{calcTotal().toLocaleString()} đ</span>
+                                        <h6 className='text-sm md:text-base font-medium flex items-center gap-0.5'><FontAwesomeIcon icon={faCoins} /> <span className='font-bold'>Tổng tiền:</span></h6>
+                                        <span className='pl-2 text-sm md:text-base'>{calcTotal().toLocaleString()} đ</span>
                                     </div>
                                     <button className='font-medium bg-blue-600 p-2 rounded-md text-white hover:scale-105 hover:bg-blue-700 duration-300'
                                         onClick={handlePaymentEvent}

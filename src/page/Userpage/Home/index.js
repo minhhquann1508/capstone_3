@@ -22,7 +22,7 @@ export default function Home() {
             <Carousel />
             <section className='flex justify-center py-20 shadow'>
                 <div className='w-4/5'>
-                    <Tabs defaultActiveKey="dangChieu" centered={true} size='large' items={items} />
+                    <Tabs style={{ fontFamily: 'movieFont' }} defaultActiveKey="dangChieu" centered={true} size='large' items={items} />
                 </div>
             </section>
             <CinemaList />

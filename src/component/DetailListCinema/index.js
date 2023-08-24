@@ -17,16 +17,16 @@ export default function DetailListCinema() {
                         <img src={cinema.hinhAnh} alt={cinema.tenRap} />
                     </div>
                     <div>
-                        <h1 className='font-semibold mb-2 text-blue-600 text-lg'>{cinema.tenRap}</h1>
-                        <p className='text-gray-600 text-sm mb-2'>{cinema.moTa}</p>
+                        <h1 className='font-bold mb-1 text-blue-600 text-xl'>{cinema.tenRap}</h1>
+                        <p className='text-gray-600 text-sm md:text-base mb-3'>{cinema.moTa}</p>
                         {new Array(cinema.danhGia).fill(null).map((_, index) => {
                             return (
-                                <FontAwesomeIcon icon={faStar} key={index} className='text-orange-400 mx-0.5 mb-2' />
+                                <FontAwesomeIcon icon={faStar} key={index} className='text-orange-400 mx-0.5 mb-1' />
                             )
                         })}
                         <div className='flex items-center gap-5'>
-                            <p className='text-gray-500 text-sm mb-2 underline'><FontAwesomeIcon icon={faLocationDot} /> {cinema.soCumRap} cụm rạp</p>
-                            <p className='text-gray-500 text-sm mb-2 underline'><FontAwesomeIcon icon={faMagnifyingGlass} /> {cinema.soLuotDanhGia} đánh giá</p>
+                            <p className='text-gray-500 text-sm md:text-base mb-2'><FontAwesomeIcon icon={faLocationDot} /> {cinema.soCumRap} cụm rạp</p>
+                            <p className='text-gray-500 text-sm md:text-base mb-2'><FontAwesomeIcon icon={faMagnifyingGlass} /> {cinema.soLuotDanhGia} đánh giá</p>
                         </div>
                     </div>
                 </div>

@@ -34,7 +34,7 @@ export default function CinemaList() {
                             )
                         })}
                     </ul>
-                    <div className=''>
+                    <div>
                         {data?.filter((brand) => brand.maHeThongRap === brandActive).map((brand, index) => {
                             return (
                                 <div key={index} className='flex flex-col md:flex-row'>
@@ -50,8 +50,8 @@ export default function CinemaList() {
                                                     >
                                                         <img src={brand.logo} alt="logo" width={35} height={35} className='rounded-full border border-gray-300' />
                                                         <div>
-                                                            <h1 className='font-medium text-sm'>{cinema.tenCumRap}</h1>
-                                                            <p className='text-xs text-gray-600'>{cinema.diaChi}</p>
+                                                            <h1 className='font-bold text-sm md:text-base'>{cinema.tenCumRap}</h1>
+                                                            <p className='text-sm md:text-base text-gray-600'>{cinema.diaChi}</p>
                                                         </div>
                                                     </li>
                                                 )
@@ -66,20 +66,21 @@ export default function CinemaList() {
                                                         <img src={movie.hinhAnh} alt={movie.tenPhim} className='w-40 md:w-full border shadow-xl hover:scale-105 duration-300' />
                                                     </div>
                                                     <div>
-                                                        <h1 className='text-center md:text-left uppercase font-medium mb-3 hover:text-blue-700 cursor-pointer duration-300'
+                                                        <h1 className='text-center md:text-lg md:text-left uppercase font-bold mb-3 text-blue-700 hover:underline cursor-pointer duration-300'
                                                             onClick={() => navigate(`/detail/${movie.maPhim}`)}
                                                         >{movie.tenPhim}</h1>
                                                         <div className='text-center md:text-left'>
                                                             <span className='p-1 bg-blue-500 text-sm text-white rounded-sm mr-1 font-medium'>Đang chiếu</span>
+                                                            <span className='p-1 bg-orange-500 mr-1 text-sm text-white rounded-sm font-medium'>C13</span>
                                                             {movie.hot ? <span className='p-1 bg-red-500 text-sm text-white rounded-sm font-medium'>Hot</span> : ''}
                                                         </div>
                                                         <h1 className='mt-3 font-bold uppercase'>2D Phụ đề</h1>
                                                         <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-3 mt-3'>
                                                             {movie.lstLichChieuTheoPhim.slice(0, 12).map((slot) => {
                                                                 return (
-                                                                    <button className='border border-blue-400 rounded-md p-2 md:p-1 text-blue-600 text-sm font-medium hover:scale-105 hover:bg-blue-600 hover:text-white duration-300'
+                                                                    <button className='border font-bold border-blue-400 text-sm rounded-md p-2 md:p-1 text-blue-600 hover:scale-105 hover:bg-blue-600 hover:text-white duration-300'
                                                                         onClick={() => navigate(`/checkout/${slot.maLichChieu}`)}
-                                                                        key={slot.maLichChieu}><span className='text-gray-400'>{dayjs(slot.ngayChieuGioChieu).format('DD/MM/YYYY')}</span> ~ {dayjs(slot.ngayChieuGioChieu).format('hh:mm A')}</button>
+                                                                        key={slot.maLichChieu}><span className='text-blue-500 font-light'>{dayjs(slot.ngayChieuGioChieu).format('DD/MM/YYYY')}</span> ~ {dayjs(slot.ngayChieuGioChieu).format('hh:mm A')}</button>
                                                                 )
                                                             })}
                                                         </div>

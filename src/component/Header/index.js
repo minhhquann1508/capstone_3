@@ -17,8 +17,8 @@ export default function Header() {
             <nav className="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-3 md:p-4">
                     <NavLink to="/" className="flex items-center">
-                        <img src="https://flowbite.com/docs/images/logo.svg" className="h-8 mr-3" alt="Flowbite Logo" />
-                        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Movie</span>
+                        <img src="../img/logoMovie.png" className="h-10 mr-3 bg-white" alt="Flowbite Logo" />
+                        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">CyberMovie</span>
                     </NavLink>
                     <div className={`flex items-center gap-3`}>
                         <div className={`${userLogin ? 'flex md:hidden' : 'hidden'} flex items-center gap-3`}>
@@ -43,7 +43,7 @@ export default function Header() {
                     <div className={`${!showNav ? 'hidden' : ''} w-full md:block md:w-auto`} id="navbar-dropdown">
                         <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 rounded-lg md:flex-row md:items-center md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                             <li className='relative'>
-                                <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" className="flex items-center justify-between w-full py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
+                                <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" className="flex items-center justify-between font-bold text-lg w-full py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
                                     onClick={() => setShowDropDown(!showDropdown)}
                                 >Phim<svg className="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m1 1 4 4 4-4" />
@@ -52,19 +52,19 @@ export default function Header() {
                                 <div id="dropdownNavbar" onBlur={() => setShowDropDown(false)} className={`${!showDropdown ? 'hidden' : ''} z-10 top-8 font-normal bg-white divide-y divide-gray-100 md:rounded-md shadow-md border w-full md:absolute md:w-44 dark:bg-gray-700 dark:divide-gray-600`}>
                                     <ul className="text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                                         <li>
-                                            <NavLink to="/showtime/dangChieu" className="block px-4 py-3 font-medium cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Phim đang chiếu</NavLink>
+                                            <NavLink to="/showtime/dangChieu" className="block px-4 py-3 text-lg cursor-pointer hover:bg-gray-100 font-bold dark:hover:bg-gray-600 dark:hover:text-white">Phim đang chiếu</NavLink>
                                         </li>
                                         <li>
-                                            <NavLink to="/showtime/sapChieu" className="block px-4 py-3 font-medium cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Phim sắp chiếu</NavLink>
+                                            <NavLink to="/showtime/sapChieu" className="block px-4 py-3 text-lg cursor-pointer hover:bg-gray-100 font-bold dark:hover:bg-gray-600 dark:hover:text-white">Phim sắp chiếu</NavLink>
                                         </li>
                                     </ul>
                                 </div>
                             </li>
                             <li>
-                                <NavLink to="/about" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 cursor-pointer dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Tin tức</NavLink>
+                                <NavLink to="/about" className="block py-2 pl-3 pr-4 font-bold text-lg text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 cursor-pointer dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Tin tức</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/contact" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 cursor-pointer dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Liên hệ</NavLink>
+                                <NavLink to="/contact" className="block py-2 pl-3 pr-4 font-bold text-lg text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 cursor-pointer dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Liên hệ</NavLink>
                             </li>
                             {userLogin ?
                                 <div className='flex items-center gap-3'>
@@ -80,10 +80,10 @@ export default function Header() {
                                 </div> :
                                 <Fragment>
                                     <li>
-                                        <NavLink to="login" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 cursor-pointer dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Đăng nhập</NavLink>
+                                        <NavLink to="login" className="block py-2 pl-3 pr-4 font-bold text-lg text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 cursor-pointer dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Đăng nhập</NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to="register" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 cursor-pointer dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Đăng ký</NavLink>
+                                        <NavLink to="register" className="block py-2 pl-3 pr-4 font-bold text-lg text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 cursor-pointer dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Đăng ký</NavLink>
                                     </li>
                                 </Fragment>
                             }
