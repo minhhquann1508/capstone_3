@@ -66,7 +66,7 @@ export default function Detail() {
                                 <button className='p-2 text-xs md:p-3 text-white font-bold md:text-lg rounded-full flex items-center gap-1 md:gap-2 uppercase hover:scale-105 duration-300' style={{ background: 'rgba(0,0,0,0.5)' }}
                                     onClick={showModal}
                                 ><img className='w-6 h-6 md:w-10 md:h-10' src="https://www.cinestar.com.vn/catalog/view/theme/default/images/scl_youtube.png" alt="ytb" /> <span>Trailer</span> </button>
-                                <Link to='lstShowtime' spy={true} smooth={true} duration={500} offset={-70} className='p-2 text-xs md:p-3 bg-white uppercase font-bold md:text-lg rounded-tl-3xl rounded-bl-3xl rounded-br-3xl shadow-2xl hover:scale-105 duration-300 flex items-center cursor-pointer'><span>Xem suất chiếu</span></Link>
+                                <Link to='lstShowtime' spy={true} smooth={true} duration={500} offset={-70} className='p-2 text-xs md:p-3 bg-white uppercase font-bold md:text-lg rounded-tl-3xl rounded-bl-3xl rounded-br-3xl shadow-2xl hover:scale-105 duration-300 flex items-center cursor-pointer'><span>Suất chiếu</span></Link>
                             </div>
                         </div>
                     </div>

@@ -222,7 +222,7 @@ export default function Checkout() {
                                 </div>
                             </div> :
                             <>
-                                <div className='flex mb-2'>
+                                <div className='flex mb-2 justify-start'>
                                     <h6 className='text-sm md:text-base font-medium flex items-center gap-0.5'><FontAwesomeIcon icon={faUser} /> <span className='font-bold'>Họ tên:</span></h6>
                                     <span className='pl-2 text-sm md:text-base'>{userLogin?.hoTen}</span>
                                 </div>
