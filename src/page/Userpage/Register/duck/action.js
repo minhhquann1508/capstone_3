@@ -14,7 +14,7 @@ export const registerAction = (data, navigate) => {
                     title: 'Chúc mừng',
                     text: 'Đăng ký thành công',
                 })
-                await navigate('./login')
+                await navigate('/login')
             }
         }
         catch (error) {

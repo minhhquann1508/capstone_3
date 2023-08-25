@@ -4,6 +4,7 @@ import { actUpdateUser, fetchData } from './duck/action';
 import { useFormik } from 'formik';
 import { GROUP_ID } from '../../../util/constant';
 import { registerSchema } from '../../../util/schema';
+import { Skeleton } from 'antd';
 export default function Dashboard() {
     const dispatch = useDispatch();
     const [isUpdate, setIsUpdate] = useState(false)
@@ -38,8 +39,10 @@ export default function Dashboard() {
             maLoaiNguoiDung: data?.maLoaiNguoiDung || 'QuanTri',
         })
     }, [data])
-    if (loading) {
-        <div className='bg-black'>Loading...</div>
+    if (loading || error) {
+        return (
+            <Skeleton />
+        )
     }
     else {
         return (

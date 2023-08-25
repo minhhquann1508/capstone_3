@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar, faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
-import { Modal } from 'antd';
+import { Modal, Skeleton } from 'antd';
 import UpdateMovieForm from './UpdateMovieForm';
 import AddMovieForm from './AddMovieForm';
 import CreateShowtimeForm from './CreateShowtimeForm';
@@ -90,58 +90,67 @@ export default function ManageMovie() {
     }
 
     const renderTableContent = () => {
-        if (data?.items.length === 0) {
-            return (
-                <tr>
-                    <td>Không có phim phù hợp</td>
-                </tr>
-            )
-        }
-        else {
-            return data?.items.map((movie, index) => {
+        if (loading || error) {
+            return new Array(10).fill(null).map((_, index) => {
                 return (
-                    <tr key={index} className="border-b border-opacity-20 text-black">
-                        <td className="p-3">
-                            {movie.maPhim}
-                        </td>
-                        <td className="p-3">
-                            <p title={movie.tenPhim}>{movie.tenPhim.slice(0, 50)}</p>
-                        </td>
-                        <td className="p-3">
-                            <p title={movie.moTa}>{movie.moTa.slice(0, 30)}</p>
-                        </td>
-                        <td className="p-3">
-                            <img src={movie.hinhAnh} alt={movie.tenPhim} width={50} height={50} />
-                        </td>
-                        <td className="p-3">
-                            {dayjs(movie.ngayKhoiChieu).format('DD/MM/YYYY')}
-                        </td>
-                        <td className="p-3">
-                            {movie.dangChieu ? 'Đang chiếu' : 'Sắp chiếu'}
-                        </td>
-                        <td className="p-3">
-                            <a target='_blank' href={movie.trailer}>{movie.trailer.slice(0, 15)}</a>
-                        </td>
-                        <td className="p-3">
-                            <button className='mr-2 bg-red-600 text-white rounded-md hover:scale-105 duration-300 py-2 px-3'
-                                onClick={() => handleDeleteMovie(movie.maPhim)}
-                            >
-                                <FontAwesomeIcon icon={faTrash} />
-                            </button>
-                            <button className='mr-2 bg-green-600 text-white rounded-md hover:scale-105 duration-300 py-2 px-3'
-                                onClick={() => showUpdateModal(movie.maPhim)}
-                            >
-                                <FontAwesomeIcon icon={faPenToSquare} />
-                            </button>
-                            <button className='mt-2 bg-blue-600 text-white rounded-md hover:scale-105 duration-300 py-2 px-3'
-                                onClick={() => showCreateShowtimeModal(movie.maPhim)}
-                            >
-                                <FontAwesomeIcon icon={faCalendar} />
-                            </button>
-                        </td>
-                    </tr>
+                    <Skeleton active />
                 )
             })
+        }
+        else {
+            if (data?.items.length === 0) {
+                return (
+                    <tr>
+                        <td>Không có phim phù hợp</td>
+                    </tr>
+                )
+            }
+            else {
+                return data?.items.map((movie, index) => {
+                    return (
+                        <tr key={index} className="border-b border-opacity-20 text-black">
+                            <td className="p-3">
+                                {movie.maPhim}
+                            </td>
+                            <td className="p-3">
+                                <p title={movie.tenPhim}>{movie.tenPhim.slice(0, 50)}</p>
+                            </td>
+                            <td className="p-3">
+                                <p title={movie.moTa}>{movie.moTa.slice(0, 30)}</p>
+                            </td>
+                            <td className="p-3">
+                                <img src={movie.hinhAnh} alt={movie.tenPhim} width={50} height={50} />
+                            </td>
+                            <td className="p-3">
+                                {dayjs(movie.ngayKhoiChieu).format('DD/MM/YYYY')}
+                            </td>
+                            <td className="p-3">
+                                {movie.dangChieu ? 'Đang chiếu' : 'Sắp chiếu'}
+                            </td>
+                            <td className="p-3">
+                                <a target='_blank' href={movie.trailer}>{movie.trailer.slice(0, 15)}</a>
+                            </td>
+                            <td className="p-3 flex flex-wrap gap-2">
+                                <button className='bg-red-600 text-white rounded-md hover:scale-105 duration-300 py-2 px-3'
+                                    onClick={() => handleDeleteMovie(movie.maPhim)}
+                                >
+                                    <FontAwesomeIcon icon={faTrash} />
+                                </button>
+                                <button className='bg-green-600 text-white rounded-md hover:scale-105 duration-300 py-2 px-3'
+                                    onClick={() => showUpdateModal(movie.maPhim)}
+                                >
+                                    <FontAwesomeIcon icon={faPenToSquare} />
+                                </button>
+                                <button className='bg-blue-600 text-white rounded-md hover:scale-105 duration-300 py-2 px-3'
+                                    onClick={() => showCreateShowtimeModal(movie.maPhim)}
+                                >
+                                    <FontAwesomeIcon icon={faCalendar} />
+                                </button>
+                            </td>
+                        </tr>
+                    )
+                })
+            }
         }
     }
     return (

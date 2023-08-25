@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchData } from '../duck/action';
 import dayjs from 'dayjs';
+import { Skeleton } from 'antd';
 
 export default function History() {
     const dispatch = useDispatch();
@@ -10,6 +11,20 @@ export default function History() {
         dispatch(fetchData());
     }, []);
     const renderContent = () => {
+        if (loading || error) {
+            return new Array(3).fill(null).map((_, index) => {
+                return (
+                    <li key={index} className="flex flex-col py-6 sm:flex-row sm:justify-between">
+                        <Skeleton
+                            avatar
+                            paragraph={{
+                                rows: 4,
+                            }}
+                        />
+                    </li >
+                )
+            })
+        }
         return data?.thongTinDatVe.map((item) => {
             return (
                 <li key={item.maVe} className="flex flex-col py-6 sm:flex-row sm:justify-between">

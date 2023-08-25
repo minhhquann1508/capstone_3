@@ -4,7 +4,7 @@ import { deletedUserAction, fetchLstUserData, findingUserAction, getUserDataActi
 import { faGear, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
-import { Modal } from 'antd';
+import { Modal, Skeleton } from 'antd';
 import Swal from 'sweetalert2';
 import UpdateUserForm from './UpdateForm';
 import AddUserForm from './AddForm';
@@ -70,7 +70,7 @@ export default function ManageUser() {
                     <td className="p-3">
                         <p>{user.maLoaiNguoiDung === 'KhachHang' ? 'Khách hàng' : 'Quản trị'}</p>
                     </td>
-                    <td className="p-3">
+                    <td className="p-3 flex flex-wrap gap-2">
                         <button className='mr-2 bg-red-600 text-white rounded-md hover:scale-105 duration-300 py-2 px-3'
                             onClick={() => deletedUser(user.taiKhoan)}
                         >
@@ -105,10 +105,12 @@ export default function ManageUser() {
             }
         })
     }
-    if (loading) {
-        return (
-            <div>Loading...</div>
-        )
+    if (loading || error) {
+        return new Array(10).fill(null).map((_, index) => {
+            return (
+                <Skeleton active />
+            )
+        })
     }
     else {
         return (

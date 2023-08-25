@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchCinemaData } from './duck/action';
 import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
+import { Skeleton } from 'antd';
 export default function CinemaList() {
     const dispatch = useDispatch();
     const navigate = useNavigate();

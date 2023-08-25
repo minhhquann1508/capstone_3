@@ -4,6 +4,7 @@ import { fetchData, updateInfoAction } from '../duck/action';
 import { useFormik } from 'formik';
 import { GROUP_ID } from '../../../../util/constant';
 import { registerSchema } from '../../../../util/schema'
+import { Skeleton } from 'antd';
 export default function InfoForm() {
     const dispatch = useDispatch();
     const [isUpdate, setIsUpdate] = useState(false);
@@ -38,6 +39,14 @@ export default function InfoForm() {
             maLoaiNguoiDung: data?.maLoaiNguoiDung || '',
         })
     }, [data])
+    if (loading || error) {
+        <Skeleton
+            avatar
+            paragraph={{
+                rows: 4,
+            }}
+        />
+    }
     return (
         <section className="p-6">
             <form onSubmit={formik.handleSubmit} className="container flex flex-col mx-auto space-y-12">
@@ -71,8 +80,8 @@ export default function InfoForm() {
                             <input type="text" disabled={!isUpdate} onChange={formik.handleChange} onBlur={formik.handleBlur} name='soDt' value={formik.values.soDt} className="border p-2 w-full rounded-md focus:ring focus:ri focus:ri" />
                             {formik.touched.email && formik.errors.email ? <p className='text-red-600'>{formik.errors.email}</p> : ''}
                         </div>
-                        <div className='flex justify-end col-span-full'>
-                            <div className='flex flex-col md:flex-row gap-2 w-full'>
+                        <div className='flex col-span-full'>
+                            <div className='flex flex-col md:flex-row justify-end gap-2 w-full'>
                                 <button type='button' className='w-full md:w-auto bg-white border border-gray-400 p-2 text-black duration-300 font-medium rounded-md hover:scale-105 mr-2'
                                     onClick={() => setIsUpdate(!isUpdate)}
                                 >{isUpdate ? 'Hủy' : 'Chỉnh sửa'}</button>

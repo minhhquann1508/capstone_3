@@ -46,7 +46,7 @@ export default function MovieList(props) {
     else {
         return (
             <Fragment>
-                <Modal width={1000} footer='' title={activeMovie.tenPhim} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                <Modal destroyOnClose width={1000} footer='' title={activeMovie.tenPhim} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
                     <Trailer trailer={activeMovie.trailer} />
                 </Modal>
                 <Swiper

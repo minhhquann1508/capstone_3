@@ -17,7 +17,7 @@ export default function Header() {
             <nav className="bg-white border-gray-200 ">
                 <div className="max-w-screen-xl bg-white flex flex-wrap items-center justify-between mx-auto p-3 md:p-4">
                     <NavLink to="/" className="flex items-center">
-                        <img src="../img/logoMovie.png" className="h-10 mr-3 bg-white" alt="Flowbite Logo" />
+                        <img src="../img/logoMovie.png" className="h-8 mr-3 bg-white" alt="Flowbite Logo" />
                         <span className="self-center text-2xl font-semibold whitespace-nowrap">CyberMovie</span>
                     </NavLink>
                     <div className={`flex items-center gap-3`}>

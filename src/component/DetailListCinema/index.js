@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchData } from './duck/action';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot, faMagnifyingGlass, faStar } from '@fortawesome/free-solid-svg-icons';
+import { Skeleton } from 'antd';
 export default function DetailListCinema() {
     const dispatch = useDispatch();
     const { data, loading, error } = useSelector(state => state.detailListCinemaReducer);
@@ -10,6 +11,13 @@ export default function DetailListCinema() {
         dispatch(fetchData())
     }, []);
     const renderContent = () => {
+        if (loading, error) {
+            return new Array(6).fill(null).map((_, index) => {
+                return (
+                    <Skeleton active />
+                )
+            })
+        }
         return data?.map((cinema) => {
             return (
                 <div key={cinema.maRap} className='cursor-pointer hover:bg-gray-50 duration-300 flex items-center gap-4 bg-white shadow-lg p-5 border rounded-lg'>
@@ -24,9 +32,9 @@ export default function DetailListCinema() {
                                 <FontAwesomeIcon icon={faStar} key={index} className='text-orange-400 mx-0.5 mb-1' />
                             )
                         })}
-                        <div className='flex items-center gap-5'>
-                            <p className='text-gray-500 text-sm md:text-base mb-2'><FontAwesomeIcon icon={faLocationDot} /> {cinema.soCumRap} cụm rạp</p>
-                            <p className='text-gray-500 text-sm md:text-base mb-2'><FontAwesomeIcon icon={faMagnifyingGlass} /> {cinema.soLuotDanhGia} đánh giá</p>
+                        <div className='flex items-center gap-1 lg:gap-5'>
+                            <p className='text-gray-500 text-sm lg:text-base mb-2'><FontAwesomeIcon icon={faLocationDot} /> {cinema.soCumRap} cụm rạp</p>
+                            <p className='text-gray-500 text-sm lg:text-base mb-2'><FontAwesomeIcon icon={faMagnifyingGlass} /> {cinema.soLuotDanhGia} đánh giá</p>
                         </div>
                     </div>
                 </div>
