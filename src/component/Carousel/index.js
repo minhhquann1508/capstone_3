@@ -54,10 +54,10 @@ export default function Carousel(props) {
                 </animated.div>
                 <animated.div className='lg:w-1/2 lg:pl-20 pt-5' style={{ ...springsContent }}>
                     <h1 className='font-bold text-xl md:text-3xl text-blue-600 mb-3'>Đặt vé ngay tại Cyber Movies</h1>
-                    <p className='font-medium text-base md:text-lg mb-2'>Số lượng phim đa dạng,phong phú</p>
-                    <p className='font-medium text-base md:text-lg mb-2'>Đặt vé nhanh chóng,đơn giản</p>
-                    <p className='font-medium text-base md:text-lg mb-2'>Thanh đoán tiện lợi</p>
-                    <p className='font-medium text-base md:text-lg mb-5'>Hỗ trợ,bảo vệ quyền lợi khách hàng </p>
+                    <p className='text-base md:text-lg mb-2'>Số lượng phim đa dạng,phong phú</p>
+                    <p className='text-base md:text-lg mb-2'>Đặt vé nhanh chóng,đơn giản</p>
+                    <p className='text-base md:text-lg mb-2'>Thanh đoán tiện lợi</p>
+                    <p className='text-base md:text-lg mb-5'>Hỗ trợ,bảo vệ quyền lợi khách hàng </p>
                     <Link to='heThongSuatChieu' smooth={true} duration={500} offset={-70} spy={true} className='cursor-pointer bg-blue-600 md:text-lg p-2 md:py-2 md:px-3 font-semibold text-white rounded-md hover:bg-blue-700 duration-300'>Đặt vé ngay</Link>
                 </animated.div>
             </div>

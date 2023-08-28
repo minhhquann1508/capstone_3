@@ -3,26 +3,21 @@
 @tailwind utilities;
 @font-face {
   font-family: 'movieFont';
-  src: url(./assets//font/CabinCondensed-Bold.ttf) format('truetype'),
-        url(./assets//font/CabinCondensed-Medium.ttf) format('truetype'),
-        url(./assets//font/CabinCondensed-Regular.ttf) format('truetype'),
-        url(./assets/font/CabinCondensed-SemiBold.ttf) format('truetype'),
+  src: url(./assets/font/Akatab-Black.ttf) format('truetype'),
+  url(./assets/font/Akatab-Bold.ttf) format('truetype'),
+  url(./assets/font/Akatab-ExtraBold.ttf) format('truetype'),
+  url(./assets/font/Akatab-Medium.ttf) format('truetype'),
+  url(./assets/font/Akatab-Regular.ttf) format('truetype'),
+  url(./assets/font/Akatab-SemiBold.ttf) format('truetype'),
+}
+*{
+  font-size:15px;
 }
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
-  font-family: 'movieFont' !important;
-  font-size:17px;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
 }
 .swiper-button-prev {
   background-color: transparent; /* Màu nền */

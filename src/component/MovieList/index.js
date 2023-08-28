@@ -51,7 +51,7 @@ export default function MovieList(props) {
                 </Modal>
                 <Swiper
                     // install Swiper modules
-                    style={{ fontFamily: 'movieFont' }}
+                    style={{ fontFamily: 'sans-serif' }}
                     modules={[Navigation, Pagination, Scrollbar, A11y]}
                     spaceBetween={30}
                     breakpoints={{
